@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vinos ROSH · Prototipo interactivo</title>
+  <meta name="theme-color" content="#4d0b14" />
+  <title>Vinos ROSH · Prototipo interactivo v0.2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -11,16 +12,19 @@
 </head>
 <body>
   <div class="review-bar" id="reviewBar">
-    <div><strong>🧪 Prototipo Vinos ROSH</strong><span>Modo de validación del cliente</span></div>
+    <div class="review-brand"><strong>🧪 Revisión Vinos ROSH</strong><span>v0.2 · validación visual</span></div>
     <div class="review-progress"><span id="progressText">0 / 8 revisadas</span><div class="progress-track"><div id="progressFill"></div></div></div>
     <button id="summaryBtn" class="ghost-btn">Ver resumen</button>
   </div>
 
   <header class="site-header reviewable" data-section-id="SEC-01" data-section-name="Header y navegación">
     <div class="container nav-wrap">
-      <a class="logo" href="#inicio"><span class="grape-mark">♧</span><span>VINOS<br><b>ROSH</b></span></a>
-      <nav><a href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#historia">Nuestra Historia</a><a href="#contacto">Contacto</a></nav>
-      <div class="nav-actions"><button aria-label="Buscar">⌕</button><button aria-label="Cuenta">♙</button><button aria-label="Carrito">🛒</button><button class="primary small">Iniciar sesión</button></div>
+      <a class="logo" href="#inicio" aria-label="Vinos ROSH">
+        <span class="logo-mark">❧</span><span class="logo-type"><small>VINOS</small><b>ROSH</b></span>
+      </a>
+      <nav><a class="active" href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#historia">Nuestra Historia</a><a href="#contacto">Contacto</a></nav>
+      <div class="nav-actions"><button aria-label="Buscar">⌕</button><button aria-label="Cuenta">♙</button><button aria-label="Carrito" class="cart-btn">🛒<span>0</span></button><button class="primary small">Iniciar sesión</button></div>
+      <button class="mobile-menu" aria-label="Abrir menú">☰</button>
     </div>
   </header>
 
@@ -29,52 +33,56 @@
       <div class="hero-overlay"></div>
       <div class="container hero-content">
         <span class="eyebrow">VINOS ROSH</span>
-        <h1>De nuestro viñedo<br>a tu mesa</h1>
-        <p>Una experiencia inspirada en nuestras uvas, con una presentación elegante y una compra simple desde cualquier dispositivo.</p>
-        <div class="hero-actions"><button class="primary">Ver productos →</button><button class="secondary">Nuestra historia</button></div>
+        <h1>De nuestro<br>viñedo a tu mesa</h1>
+        <p>Una propuesta inspirada en nuestras uvas, con una presentación elegante y una experiencia pensada para comprar fácil desde cualquier dispositivo.</p>
+        <div class="hero-actions"><a class="primary button-link" href="#productos">Ver productos →</a><a class="secondary button-link" href="#historia">Nuestra historia</a></div>
+        <div class="slider-dots" aria-label="Indicadores visuales"><span class="on"></span><span></span><span></span><span></span></div>
       </div>
     </section>
 
     <section class="benefits reviewable" data-section-id="SEC-03" data-section-name="Beneficios destacados">
       <div class="container benefits-grid">
-        <article><span>🍇</span><div><b>Producción propia</b><small>Uvas seleccionadas</small></div></article>
-        <article><span>◉</span><div><b>Sin alcohol</b><small>Característica por validar</small></div></article>
-        <article><span>🚚</span><div><b>Envíos a todo el Perú</b><small>Cobertura por definir</small></div></article>
-        <article><span>▣</span><div><b>Pago seguro</b><small>Diversos métodos</small></div></article>
+        <article><span class="benefit-icon">🍇</span><div><b>Producción propia</b><small>Uvas seleccionadas</small></div></article>
+        <article><span class="benefit-icon">◉</span><div><b>Sin alcohol</b><small>Característica por validar</small></div></article>
+        <article><span class="benefit-icon">🚚</span><div><b>Envíos a todo el Perú</b><small>Cobertura por definir</small></div></article>
+        <article><span class="benefit-icon">▣</span><div><b>Pago seguro</b><small>Diversos métodos</small></div></article>
       </div>
     </section>
 
     <section id="productos" class="section products-section reviewable" data-section-id="SEC-04" data-section-name="Productos destacados">
       <div class="container">
-        <div class="section-heading"><div><span class="eyebrow wine">SELECCIÓN</span><h2>Nuestros productos</h2><p>Ejemplos visuales para validar el estilo del catálogo.</p></div><a href="#">Ver todos →</a></div>
+        <div class="section-heading"><div><span class="eyebrow wine">SELECCIÓN</span><h2>Nuestros productos</h2><p>Imágenes de referencia preparadas para validar el estilo del catálogo.</p></div><a href="#productos">Ver todos →</a></div>
         <div class="product-grid">
-          <article class="product-card"><div class="product-photo p1"></div><div class="card-body"><h3>ROSH Tinto</h3><p>Vino de uva sin alcohol</p><b>S/ 42.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
-          <article class="product-card"><div class="product-photo p2"></div><div class="card-body"><h3>ROSH Blanco</h3><p>Vino de uva sin alcohol</p><b>S/ 42.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
-          <article class="product-card"><div class="product-photo p3"></div><div class="card-body"><h3>ROSH Rosado</h3><p>Presentación demostrativa</p><b>S/ 42.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
-          <article class="product-card"><div class="product-photo p4"></div><div class="card-body"><h3>Pack degustación</h3><p>3 variedades</p><b>S/ 120.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
+          <article class="product-card"><div class="product-photo p1"><button class="heart">♡</button></div><div class="card-body"><h3>ROSH Tinto</h3><p>Vino de uva sin alcohol</p><b>S/ 42.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
+          <article class="product-card"><div class="product-photo p2"><button class="heart">♡</button></div><div class="card-body"><h3>ROSH Blanco</h3><p>Vino de uva sin alcohol</p><b>S/ 42.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
+          <article class="product-card"><div class="product-photo p3"><button class="heart">♡</button></div><div class="card-body"><h3>ROSH Rosado</h3><p>Presentación demostrativa</p><b>S/ 42.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
+          <article class="product-card"><div class="product-photo p4"><button class="heart">♡</button></div><div class="card-body"><h3>Pack degustación</h3><p>3 variedades</p><b>S/ 120.00</b><button class="primary full">🛒 Agregar al carrito</button></div></article>
         </div>
       </div>
     </section>
 
     <section id="historia" class="story reviewable" data-section-id="SEC-05" data-section-name="Nuestra historia">
-      <div class="story-image"></div><div class="story-copy"><span class="eyebrow wine">ORIGEN</span><h2>Nuestra historia</h2><p>Somos una propuesta nacida alrededor del cultivo de uvas y la elaboración propia. El contenido real de la historia será validado por la empresa.</p><button class="primary">Conocer nuestra historia →</button></div>
+      <div class="story-image grapes"></div>
+      <div class="story-copy"><span class="eyebrow wine">ORIGEN</span><h2>Nuestra historia</h2><p>Una sección pensada para contar el origen del proyecto, la familia, el cultivo de las uvas y la pasión detrás de Vinos ROSH. El relato final será validado por la empresa.</p><button class="primary">Conocer nuestra historia →</button></div>
+      <div class="story-image vineyard"></div>
     </section>
 
     <section class="section testimonials reviewable" data-section-id="SEC-06" data-section-name="Testimonios de clientes">
       <div class="container"><div class="section-heading center"><div><span class="eyebrow wine">CONFIANZA</span><h2>Lo que dicen nuestros clientes</h2><p>Ejemplos de cómo podrían mostrarse reseñas reales en una etapa posterior.</p></div></div>
-        <div class="testimonial-grid"><article>★★★★★<p>“Un producto delicioso y natural. Ideal para compartir en familia.”</p><b>— Cliente de ejemplo</b></article><article>★★★★★<p>“Excelente presentación y una experiencia de compra muy clara.”</p><b>— Cliente de ejemplo</b></article><article>★★★★☆<p>“Me gustó la propuesta visual y la información del producto.”</p><b>— Cliente de ejemplo</b></article></div>
+        <div class="testimonial-grid"><article><div class="avatar">ML</div><div><div class="rating">★★★★★</div><p>“Un producto delicioso y natural. Ideal para compartir en familia.”</p><b>— María L.</b></div></article><article><div class="avatar">CR</div><div><div class="rating">★★★★★</div><p>“Excelente presentación y una experiencia de compra muy clara.”</p><b>— Carlos R.</b></div></article><article><div class="avatar">AP</div><div><div class="rating">★★★★☆</div><p>“Me gustó la propuesta visual y la información del producto.”</p><b>— Ana P.</b></div></article></div>
       </div>
     </section>
   </main>
 
   <footer id="contacto" class="site-footer reviewable" data-section-id="SEC-07" data-section-name="Footer y datos de contacto">
-    <div class="container footer-grid"><div class="footer-brand"><div class="logo light"><span class="grape-mark">♧</span><span>VINOS<br><b>ROSH</b></span></div><p>El sabor de nuestra tierra en cada momento.</p></div><div><b>Enlaces</b><a>Inicio</a><a>Productos</a><a>Nuestra Historia</a><a>Contacto</a></div><div><b>Información</b><a>Términos y condiciones</a><a>Política de privacidad</a><a>Libro de Reclamaciones</a></div><div><b>Recibe novedades</b><div class="newsletter"><input placeholder="Tu correo electrónico"><button>→</button></div></div></div>
+    <div class="container footer-grid"><div class="footer-brand"><div class="logo light"><span class="logo-mark">❧</span><span class="logo-type"><small>VINOS</small><b>ROSH</b></span></div><p>El sabor de nuestra tierra en cada momento.</p></div><div><b>Enlaces</b><a>Inicio</a><a>Productos</a><a>Nuestra Historia</a><a>Contacto</a></div><div><b>Información</b><a>Términos y condiciones</a><a>Política de privacidad</a><a>Libro de Reclamaciones</a></div><div><b>Recibe novedades</b><div class="newsletter"><input placeholder="Tu correo electrónico"><button>→</button></div><div class="socials">● ◉ ▶</div></div></div>
+    <div class="container footer-bottom">© 2026 Vinos ROSH · Prototipo para validación.</div>
   </footer>
 
-  <button class="whatsapp reviewable floating-reviewable" data-section-id="SEC-08" data-section-name="Botón flotante de WhatsApp" aria-label="WhatsApp">WA</button>
+  <button class="whatsapp reviewable floating-reviewable" data-section-id="SEC-08" data-section-name="Botón flotante de WhatsApp" aria-label="WhatsApp">☎</button>
 
   <div class="modal-backdrop" id="reviewModal" hidden>
-    <div class="modal"><button class="modal-close" id="closeReview">×</button><span class="eyebrow wine">VALIDAR SECCIÓN</span><h2 id="modalSectionName">Sección</h2><p>¿Qué te parece esta parte del prototipo?</p>
+    <div class="modal"><button class="modal-close" id="closeReview">×</button><span class="eyebrow wine">VALIDAR SECCIÓN</span><h2 id="modalSectionName">Sección</h2><p>Tu opinión se guarda en este navegador mientras probamos la experiencia.</p>
       <div class="decision-row"><button data-status="approved">✅ Me gusta</button><button data-status="changes">✏️ Modificaría algo</button><button data-status="rejected">❌ No me gusta</button></div>
       <label>Calificación</label><div class="stars" id="stars"><button data-star="1">★</button><button data-star="2">★</button><button data-star="3">★</button><button data-star="4">★</button><button data-star="5">★</button></div>
       <label for="comment">¿Qué mejorarías?</label><textarea id="comment" rows="5" placeholder="Ej.: Me gusta, pero quisiera que las botellas se vean más grandes..."></textarea>
