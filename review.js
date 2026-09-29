@@ -13,6 +13,17 @@ const params=new URLSearchParams(location.search);
 const isReview=params.get('review')==='true';
 if(isReview)document.body.classList.add('review-mode');
 
+// v0.2.1: elimina por completo la franja superior del modo revisión.
+// Los controles siguen apareciendo dentro de cada sección sin empujar el header hacia abajo.
+const layoutFix=document.createElement('style');
+layoutFix.textContent=`
+.review-bar,body.review-mode .review-bar{display:none!important;height:0!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;box-shadow:none!important}
+.site-header,.review-mode .site-header,body.review-mode .site-header{top:0!important}
+html,body{margin-top:0!important;padding-top:0!important}
+@media(max-width:900px){body.review-mode .site-header{top:0!important}}
+`;
+document.head.appendChild(layoutFix);
+
 function statusMeta(status){return status==='approved'?['✅ Aprobado','status-approved']:status==='changes'?['✏️ Modificar','status-changes']:status==='rejected'?['❌ No gusta','status-rejected']:['Sin revisar','']}
 function renderStars(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
 function injectTools(){if(!isReview)return;sections.forEach(sec=>{const id=sec.dataset.sectionId;const tools=document.createElement('div');tools.className='review-tools';const saved=reviews[id];if(saved)tools.classList.add('has-review');tools.innerHTML=`<button class="quick ok" title="Me gusta">✅</button><button class="quick edit" title="Modificar">✏️</button><button class="quick no" title="No me gusta">❌</button><button class="open-review" title="Comentar">💬 Opinar</button>`;tools.querySelector('.ok').onclick=e=>{e.stopPropagation();openReview(sec,'approved')};tools.querySelector('.edit').onclick=e=>{e.stopPropagation();openReview(sec,'changes')};tools.querySelector('.no').onclick=e=>{e.stopPropagation();openReview(sec,'rejected')};tools.querySelector('.open-review').onclick=e=>{e.stopPropagation();openReview(sec)};sec.appendChild(tools);if(saved)sec.classList.add('reviewed-outline')})}
