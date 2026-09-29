@@ -13,13 +13,30 @@ const params=new URLSearchParams(location.search);
 const isReview=params.get('review')==='true';
 if(isReview)document.body.classList.add('review-mode');
 
-// v0.2.1: elimina por completo la franja superior del modo revisión.
-// Los controles siguen apareciendo dentro de cada sección sin empujar el header hacia abajo.
+// v0.2.2: header totalmente transparente sobre el Hero.
+// Solo toma fondo borgoña después de bajar suficientemente por la página.
 const layoutFix=document.createElement('style');
 layoutFix.textContent=`
 .review-bar,body.review-mode .review-bar{display:none!important;height:0!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;box-shadow:none!important}
-.site-header,.review-mode .site-header,body.review-mode .site-header{top:0!important}
-html,body{margin-top:0!important;padding-top:0!important}
+html,body{margin:0!important;padding:0!important}
+.site-header,.review-mode .site-header,body.review-mode .site-header{
+  position:absolute!important;
+  top:0!important;left:0!important;right:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  border-bottom:1px solid rgba(255,255,255,.16)!important;
+}
+.site-header.scrolled{
+  position:fixed!important;
+  background:rgba(55,10,18,.94)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+  box-shadow:0 8px 30px rgba(20,7,9,.20)!important;
+}
+.hero{margin-top:0!important}
 @media(max-width:900px){body.review-mode .site-header{top:0!important}}
 `;
 document.head.appendChild(layoutFix);
@@ -42,8 +59,8 @@ function updateProgress(){const done=sections.filter(s=>reviews[s.dataset.sectio
 function openSummary(){const list=document.getElementById('summaryList');let sum=0,count=0;list.innerHTML=sections.map(sec=>{const r=reviews[sec.dataset.sectionId];if(r){sum+=r.rating;count++}const [label,klass]=statusMeta(r?.status);return `<div class="summary-row"><div><strong>${sec.dataset.sectionName}</strong>${r?.comment?`<div style="font-size:12px;color:#756a64;margin-top:4px">“${escapeHtml(r.comment)}”</div>`:''}</div><span class="status-pill ${klass}">${label}</span><span class="stars-mini">${r?renderStars(r.rating):'—'}</span></div>`}).join('');document.getElementById('averageScore').textContent=count?`${(sum/count).toFixed(1)} / 5`:'—';summaryModal.hidden=false;document.body.style.overflow='hidden'}
 document.getElementById('summaryBtn').onclick=openSummary;
 document.getElementById('finishReview').onclick=()=>{const choice=document.querySelector('input[name="final"]:checked');if(!choice){alert('Selecciona una decisión final.');return}const done=sections.filter(s=>reviews[s.dataset.sectionId]).length;localStorage.setItem(FINAL_KEY,JSON.stringify({choice:choice.value,completedSections:done,totalSections:sections.length,completedAt:new Date().toISOString()}));alert('✅ Validación guardada en este navegador.');closeModal(summaryModal)};
-function escapeHtml(value=''){return value.replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]))}
-function handleHeader(){document.querySelector('.site-header').classList.toggle('scrolled',scrollY>32)}
+function escapeHtml(value=''){return value.replace(/[&<>'\"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[ch]))}
+function handleHeader(){document.querySelector('.site-header').classList.toggle('scrolled',scrollY>110)}
 addEventListener('scroll',handleHeader,{passive:true});
 handleHeader();
 injectTools();
